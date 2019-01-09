@@ -1,0 +1,40 @@
+{
+  "name": "sequelize-typescript-example",
+  "version": "1.0.0",
+  "description": "Simple example of the sequelize-typescript package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlumbroso/sequelize-typescript-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlumbroso/sequelize-typescript-example/issues"
+  },
+  "homepage": "https://github.com/jlumbroso/sequelize-typescript-example#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "moment": "^2.23.0",
+    "reflect-metadata": "^0.1.12",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "sequelize": "^4.42.0",
+    "sequelize-typescript": "^0.6.7-beta.1",
+    "source-map-support": "^0.5.9",
+    "sqlite3": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.119",
+    "@types/request": "^2.48.1",
+    "@types/request-promise-native": "^1.0.15",
+    "@types/sequelize": "^4.27.33",
+    "@types/sqlite3": "^3.1.3",
+    "typescript": "^3.2.2"
+  }
+}
