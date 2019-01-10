@@ -1,19 +1,22 @@
-import { Table, Column, Model } from "sequelize-typescript";
+import { Column, Model, Table } from "sequelize-typescript";
 
 @Table
-export class StockQuote extends Model<StockQuote> {
+export class Stockquote extends Model<Stockquote> {
   @Column
-  company: string;
+  public company: string;
 
   @Column
-  date: Date;
+  public date: Date;
 
   @Column
-  open: number;
+  public open: number;
 
   @Column
-  close: number;
+  public close: number;
 
   @Column
-  volume: number;
+  public volume: number;
+
+  @Column
+  public changePercent: number;
 }
