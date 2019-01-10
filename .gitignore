@@ -1,6 +1,9 @@
 # Compiled TypeScript
 build/**
 
+# Temporary example
+src/example.ts
+
 # Logs
 logs
 *.log

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "exec": "clear && npm run tsc && node build/App.js"
   },
   "repository": {
     "type": "git",

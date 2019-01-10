@@ -12,7 +12,7 @@ import { Tag } from "./models/Tag";
 // Connect to the database
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  logging: false,
+  // logging: false,
   storage: ":memory:",
 
   // INFO: https://github.com/sequelize/sequelize/issues/8417#issuecomment-334056048
