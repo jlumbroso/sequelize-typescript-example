@@ -1,37 +1,18 @@
 import * as _ from "lodash";
 import * as moment from "moment";
 import * as request from "request-promise-native";
-import { Sequelize } from "sequelize-typescript";
 
-import { Stockquote } from "./models/Stockquote";
-import { StockquoteTag } from "./models/StockquoteTag";
-import { Tag } from "./models/Tag";
-
+import {
+  resetDb,
+  Sequelize,
+  sequelize,
+  Stockquote,
+  StockquoteTag,
+  Tag
+} from "./db";
 import { logger } from "./utils/Logger";
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  logging: false,
-  storage: ":memory:",
-
-  // INFO: https://github.com/sequelize/sequelize/issues/8417#issuecomment-334056048
-  operatorsAliases: false
-});
 // https://api.iextrading.com/1.0/stock/aapl/chart/1y
-
-sequelize.addModels([Stockquote, StockquoteTag, Tag]);
-
-// Force Initialization of the models and wipe all data ///
-async function initializeDatabase() {
-  try {
-    await sequelize.sync({ force: true });
-    logger.info("DB: Database initialized");
-  } catch {
-    logger.info("DB: ERROR initializing database");
-    return false;
-  }
-  return true;
-}
 
 async function correlation(
   stockA: string,
@@ -132,7 +113,7 @@ async function populateDb(sign: string) {
 }
 
 async function test() {
-  if (await initializeDatabase()) {
+  if (await resetDb()) {
     logger.info("DB: Testing insertion...");
     try {
       await populateDb("amzn");
