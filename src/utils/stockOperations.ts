@@ -30,7 +30,7 @@ export async function populateStockData(sign: string) {
   // Add stock data to the database
   try {
     await Promise.all(
-      yearStockData.map(async quote => {
+      (yearStockData as any[]).map(quote => {
         new Stockquote({
           changePercent: quote.changePercent,
           close: quote.close,

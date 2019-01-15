@@ -20,12 +20,12 @@ import {
 } from "./utils/stockOperations";
 
 async function initializeDb() {
-  const stock = ["aapl"]; //, "amzn", "spy", "snap", "nflx"];
+  const stock = ["aapl", "amzn", "spy", "snap", "nflx"];
   if (await resetDb()) {
     try {
       const tbl = await Promise.all(stock.map(populateStockData));
       logger.info("DB: Insertion of initial stock data completed");
-      logger.info("tbl: " + tbl.toString());
+      logger.info(`tbl: ${tbl.toString()}`);
       return true;
     } catch (exc) {
       logger.error("DB: ERROR while initializing stock database");
@@ -44,7 +44,7 @@ async function test() {
         company: { [Sequelize.Op.is]: name },
         date: {
           [Sequelize.Op.gte]: moment("20180901", "YYYYMMDD").toDate(),
-          [Sequelize.Op.lte]: moment("20180902", "YYYYMMDD").toDate()
+          [Sequelize.Op.lte]: moment("20180905", "YYYYMMDD").toDate()
         }
       }
     });

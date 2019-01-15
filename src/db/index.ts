@@ -12,7 +12,7 @@ import { Tag } from "./models/Tag";
 // Connect to the database
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  // logging: false,
+  logging: false,
   storage: ":memory:",
 
   // INFO: https://github.com/sequelize/sequelize/issues/8417#issuecomment-334056048
@@ -24,8 +24,12 @@ sequelize.addModels([Stockquote, StockquoteTag, Tag]);
 
 // Helper methods
 
-// Force Initialization of the models and wipe all data ///
-async function resetDb() {
+/**
+ * Force initialization of the models and creation of tables
+ * in the database; wipes all data if any exists.
+ * @returns Success of the operation.
+ */
+async function resetDb(): Promise<boolean> {
   try {
     await sequelize.sync({ force: true });
     logger.info("DB: Database initialized");
