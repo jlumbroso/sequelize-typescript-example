@@ -4,9 +4,10 @@
   "description": "Simple example of the sequelize-typescript package.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll --verbose",
+    "test": "NODE_ENV=local jest --watchAll --verbose",
     "tsc": "tsc",
-    "exec": "clear && npm run tsc && node build/App.js"
+    "exec": "clear && npm run tsc && NODE_ENV=local node build/App.js",
+    "postinstall": "node-config-ts"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
+    "node-config-ts": "^2.1.2",
     "pino": "^5.10.6",
     "reflect-metadata": "^0.1.12",
     "request": "^2.88.0",

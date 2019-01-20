@@ -4,20 +4,42 @@ import { Sequelize } from "sequelize-typescript";
 // Logger package
 import { logger } from "../utils/Logger";
 
+// Configuration package
+import { config } from "node-config-ts";
+
 // Our models
 import { Stockquote } from "./models/Stockquote";
 import { StockquoteTag } from "./models/StockquoteTag";
 import { Tag } from "./models/Tag";
 
-// Connect to the database
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  logging: false,
-  storage: ":memory:",
+// Build database configuration
+const dbConfig = config.db;
 
-  // INFO: https://github.com/sequelize/sequelize/issues/8417#issuecomment-334056048
-  operatorsAliases: false
-});
+// Connect to the database
+let sequelize: Sequelize;
+if (dbConfig.dialect === "sqlite") {
+  sequelize = new Sequelize({
+    dialect: "sqlite",
+    logging: false,
+    storage: dbConfig.storage,
+
+    // INFO: https://github.com/sequelize/sequelize/issues/8417#issuecomment-334056048
+    operatorsAliases: false
+  });
+} else {
+  sequelize = new Sequelize({
+    database: dbConfig.database,
+    dialect: dbConfig.dialect,
+    host: dbConfig.host,
+    password: dbConfig.password,
+    port: dbConfig.port,
+    username: dbConfig.username,
+
+    // INFO: https://github.com/sequelize/sequelize/issues/8417#issuecomment-334056048
+    operatorsAliases: false
+  });
+}
+logger.info({ ...dbConfig, password: "--------------" });
 
 // Register our models with sequelize
 sequelize.addModels([Stockquote, StockquoteTag, Tag]);
