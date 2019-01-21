@@ -7,7 +7,6 @@ import {
   Tag
 } from "../../src/db";
 import { logger } from "../../src/utils/Logger";
-import { IsInt } from "sequelize-typescript";
 
 const childLogger = logger.child({ test: "db.test.ts" });
 
