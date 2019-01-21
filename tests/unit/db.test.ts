@@ -60,7 +60,7 @@ describe("database", () => {
       await new Stockquote({
         changePercent: 0,
         close: 0,
-        company: "aaaa",
+        company: nameA,
         date: new Date(),
         open: 0,
         volume: 0
@@ -68,17 +68,33 @@ describe("database", () => {
       await new Stockquote({
         changePercent: 0,
         close: 0,
-        company: "bbbb",
+        company: nameB,
         date: new Date(),
         open: 0,
         volume: 0
       }).save();
-      const result = await Stockquote.findAll({
+      await new Stockquote({
+        changePercent: 0,
+        close: 0,
+        company: nameB,
+        date: new Date(),
+        open: 0,
+        volume: 0
+      }).save();
+
+      const resultA = await Stockquote.findAll({
         where: {
-          company: { [Sequelize.Op.is]: "aaaa" }
+          company: { [Sequelize.Op.is]: nameA }
         }
       });
-      expect(result).toHaveLength(1);
+      expect(resultA).toHaveLength(1);
+
+      const resultB = await Stockquote.findAll({
+        where: {
+          company: { [Sequelize.Op.is]: nameB }
+        }
+      });
+      expect(resultB).toHaveLength(2);
     });
   });
 });
