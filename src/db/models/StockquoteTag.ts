@@ -7,7 +7,7 @@ import { Tag } from "./Tag";
 export class StockquoteTag extends Model<StockquoteTag> {
   @ForeignKey(() => Stockquote)
   @Column
-  public stockQuoteId: number;
+  public stockquoteId: number;
 
   @ForeignKey(() => Tag)
   @Column
