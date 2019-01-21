@@ -39,7 +39,11 @@ if (dbConfig.dialect === "sqlite") {
     operatorsAliases: false
   });
 }
-logger.info({ ...dbConfig, password: "--------------" });
+logger.debug("CONFIG: Database configuration");
+logger.debug({
+  ...dbConfig,
+  password: "--------------"
+});
 
 // Register our models with sequelize
 sequelize.addModels([Stockquote, StockquoteTag, Tag]);
@@ -54,7 +58,7 @@ sequelize.addModels([Stockquote, StockquoteTag, Tag]);
 async function resetDb(): Promise<boolean> {
   try {
     await sequelize.sync({ force: true });
-    logger.info("DB: Database initialized");
+    logger.debug("DB: Database initialized");
   } catch (ex) {
     logger.error("DB: ERROR initializing database");
     logger.error(ex);

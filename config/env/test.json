@@ -1,0 +1,7 @@
+{
+  "verbose": false,
+  "db": {
+    "dialect": "sqlite",
+    "storage": ":memory:"
+  }
+}
