@@ -124,18 +124,37 @@ describe("database", () => {
       const stockquote = makeTestStock(nameA);
       const tag = makeTestTag(nameB);
 
-      await stockquote.save();
-
-      // stockquote.addTag(tag);
-      // new StockquoteTag({ stockquoteId: stockquote.id, tagId: tag.id }).save();
-      // stockquote.tags.push(tag);
-
+      // Create objects in database
       await stockquote.save();
       await tag.save();
 
-      const resultA = await Stockquote.findAll();
-      console.log(resultA[0]);
-      console.log(tag);
+      // Create association
+      await stockquote.$add("tag", tag);
+
+      // Check that the association was successful
+      const query = await Stockquote.findOne();
+      expect(query.company).toBe(nameA);
+
+      const queryTag = await query.$get("tags");
+      expect(queryTag[0].description).toBe(nameB);
+    });
+
+    it("should be able to remove Tag to Stockquote", async () => {
+      // Initialize objects and association
+      const stockquote = makeTestStock(nameA);
+      const tag = makeTestTag(nameB);
+      await stockquote.save();
+      await tag.save();
+      await stockquote.$add("tag", tag);
+
+      // Check that the association was successful
+      let queryTag = await stockquote.$get("tags");
+      expect(queryTag).toHaveLength(1);
+
+      // Remove association
+      await stockquote.$remove("tag", tag);
+      queryTag = await stockquote.$get("tags");
+      expect(queryTag).toHaveLength(0);
     });
   });
 });

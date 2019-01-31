@@ -4,7 +4,7 @@
   "description": "Simple example of the sequelize-typescript package.",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --watchAll --verbose --silent",
+    "test": "NODE_ENV=test jest --watchAll --verbose",
     "tsc": "tsc",
     "exec": "clear && npm run tsc && NODE_ENV=local node build/App.js",
     "postinstall": "node-config-ts"
