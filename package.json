@@ -22,7 +22,7 @@
   "homepage": "https://github.com/jlumbroso/sequelize-typescript-example#readme",
   "dependencies": {
     "lodash": "^4.17.21",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "node-config-ts": "^2.3.1",
     "pino": "^5.17.0",
     "reflect-metadata": "^0.1.13",
